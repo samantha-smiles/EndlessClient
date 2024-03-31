@@ -49,10 +49,7 @@ namespace EndlessClient.Rendering.MapEntityRenderers
 
             var pos = GetDrawCoordinatesFromGridUnits(col, row);
             pos = new Vector2(pos.X - 32, pos.Y);
-
-            // Increase the alpha value to make the shadow darker. 
-            // Example: Change from 255 / 5 to a higher value like 255 / 2 for darker shadows.
-            // You may need to experiment with this value to find what looks best for your game.
+            
             var shadowColor = Color.FromNonPremultiplied(255, 255, 255, 255 / 2); // More extreme shadow
 
             spriteBatch.Draw(gfx, pos + additionalOffset, shadowColor);
