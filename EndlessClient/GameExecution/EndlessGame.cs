@@ -54,7 +54,7 @@ namespace EndlessClient.GameExecution
         private SpriteBatch _spriteBatch;
         private Stopwatch _lastFrameRenderTime = Stopwatch.StartNew();
         private int _frames, _displayFrames;
-        private Texture2D _black;
+        private Texture2D _blue;
 #endif
 
         public EndlessGame(IClientWindowSizeRepository windowSizeRepository,
@@ -145,8 +145,8 @@ namespace EndlessClient.GameExecution
         {
 #if DEBUG
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _black = new Texture2D(GraphicsDevice, 1, 1);
-            _black.SetData(new[] { Color.Black });
+            _blue = new Texture2D(GraphicsDevice, 1, 1);
+            _blue.SetData(new[] { Color.BlueViolet });
 #endif
 
             _contentProvider.Load();
@@ -225,11 +225,11 @@ namespace EndlessClient.GameExecution
 #if DEBUG
             _frames++;
 
-            var fpsString = $"FPS: {_displayFrames}{(gameTime.IsRunningSlowly ? " (SLOW)" : string.Empty)}";
+            var fpsString = $"SPEED: {_displayFrames}{(gameTime.IsRunningSlowly ? " (SLOW)" : string.Empty)}";
             var dim = _contentProvider.Fonts[Constants.FontSize09].MeasureString(fpsString);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_black, new Rectangle(18, 18, (int)dim.Width + 4, (int)dim.Height + 4), Color.White);
+            _spriteBatch.Draw(_blue, new Rectangle(18, 18, (int)dim.Width + 4, (int)dim.Height + 4), Color.White);
             _spriteBatch.DrawString(_contentProvider.Fonts[Constants.FontSize09], fpsString, new Vector2(20, 20), Color.White);
             _spriteBatch.End();
 

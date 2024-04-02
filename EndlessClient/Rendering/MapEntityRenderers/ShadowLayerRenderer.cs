@@ -50,7 +50,7 @@ namespace EndlessClient.Rendering.MapEntityRenderers
             var pos = GetDrawCoordinatesFromGridUnits(col, row);
             pos = new Vector2(pos.X - 32, pos.Y);
             
-            var shadowColor = Color.FromNonPremultiplied(255, 255, 255, 255 / 2); // More extreme shadow
+            var shadowColor = Color.FromNonPremultiplied(255, 255, 255, 255 / 3); // More extreme shadow
 
             spriteBatch.Draw(gfx, pos + additionalOffset, shadowColor);
         }

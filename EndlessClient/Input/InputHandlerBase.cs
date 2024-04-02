@@ -9,7 +9,7 @@ namespace EndlessClient.Input
 {
     public abstract class InputHandlerBase : IInputHandler
     {
-        private const int INPUT_RATE_LIMIT_MILLISECONDS = 200;
+        private const int INPUT_RATE_LIMIT_MILLISECONDS = 100;
         private const int WARP_BACKOFF_TIME_MILLISECONDS = 300;
         private const int WARP_SLEEP_BACKOFF_TIME_MILLISECONDS = 5000;
 

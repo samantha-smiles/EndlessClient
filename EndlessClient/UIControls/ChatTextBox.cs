@@ -1,4 +1,5 @@
-﻿using EndlessClient.Content;
+﻿using System;
+using EndlessClient.Content;
 using EndlessClient.Rendering;
 using EOLib;
 using EOLib.Graphics;
@@ -22,6 +23,7 @@ namespace EndlessClient.UIControls
 
         private bool _ignoreAllInput;
         private Option<DateTime> _endMuteTime;
+        private bool _canEnter;
 
         private readonly Rectangle? _leftSide, _background, _rightSide;
 
@@ -114,10 +116,27 @@ namespace EndlessClient.UIControls
             if (_ignoreAllInput)
                 return false;
 
-            if (IsSpecialInput(eventArgs.Key, eventArgs.Modifiers))
-                HandleSpecialInput(eventArgs.Key);
-            else
+            // If Enter key is pressed, allow input.
+            if (eventArgs.Key == Keys.Enter && !_canEnter)
+            {
+                _canEnter = true;
+                
+                return false; 
+            }
+
+            if (_canEnter)
+            {
                 base.HandleTextInput(eventArgs);
+                if (eventArgs.Key == Keys.Enter)
+                    _canEnter = false;
+                return true;
+            }
+            
+            if (IsSpecialInput(eventArgs.Key, eventArgs.Modifiers))
+            {
+                HandleSpecialInput(eventArgs.Key);
+                return true;
+            }
 
             return true;
         }

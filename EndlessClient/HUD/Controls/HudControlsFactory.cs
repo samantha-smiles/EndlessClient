@@ -518,7 +518,7 @@ namespace EndlessClient.HUD.Controls
         {
             var chatTextBox = new ChatTextBox(_nativeGraphicsManager, _clientWindowSizeRepository, _contentProvider)
             {
-                Text = "",
+                Text = " ",
                 Selected = true,
                 Visible = true,
                 DrawOrder = HUD_CONTROL_LAYER,

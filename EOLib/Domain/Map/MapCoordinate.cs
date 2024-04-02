@@ -35,32 +35,33 @@ namespace EOLib.Domain.Map
 
         public override bool Equals(object obj)
         {
-            if (!(obj is MapCoordinate))
+            // Direct comparison for struct type
+            if (obj.GetType() != typeof(MapCoordinate))
                 return false;
 
-            var other = (MapCoordinate) obj;
+            var other = (MapCoordinate)obj;
             return X == other.X && Y == other.Y;
         }
 
         public override int GetHashCode()
         {
-            var hash = 397 ^ X.GetHashCode();
-            hash = (hash * 397) ^ Y.GetHashCode();
-            return hash;
+            // Simplified hash code calculation
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = (int)2166136261;
+                hash = (hash * 16777619) ^ X.GetHashCode();
+                hash = (hash * 16777619) ^ Y.GetHashCode();
+                return hash;
+            }
         }
 
         public int CompareTo(MapCoordinate other)
         {
-            if (other == null)
-                return -1;
+            // Removed redundant null check for struct and simplified comparison logic
+            int compareX = X.CompareTo(other.X);
+            if (compareX != 0) return compareX;
 
-            if (other.X < X || other.Y < Y)
-                return -1;
-
-            if (other.X > X || other.Y > Y)
-                return 1;
-
-            return 0;
+            return Y.CompareTo(other.Y);
         }
     }
 }

@@ -22,13 +22,13 @@ namespace EndlessClient.Input
 
         protected override Option<Keys> HandleInput()
         {
-            if (IsKeyHeld(Keys.Left) && _arrowKeyController.MoveLeft())
+            if (IsKeyHeld(Keys.W) && _arrowKeyController.MoveLeft())
                 return Option.Some(Keys.Left);
-            if (IsKeyHeld(Keys.Right) && _arrowKeyController.MoveRight())
+            if (IsKeyHeld(Keys.S) && _arrowKeyController.MoveRight())
                 return Option.Some(Keys.Right);
-            if (IsKeyHeld(Keys.Up) && _arrowKeyController.MoveUp())
+            if (IsKeyHeld(Keys.D) && _arrowKeyController.MoveUp())
                 return Option.Some(Keys.Up);
-            if (IsKeyHeld(Keys.Down) && _arrowKeyController.MoveDown())
+            if (IsKeyHeld(Keys.A) && _arrowKeyController.MoveDown())
                 return Option.Some(Keys.Down);
 
             if (KeysAreUp(Keys.Left, Keys.Right, Keys.Up, Keys.Down))
